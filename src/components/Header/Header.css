@@ -1,0 +1,105 @@
+header {
+  height: 56px;
+}
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.nav__left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left__logo img {
+  height: 56px;
+  width: 120px;
+  color: white;
+}
+
+.nav__center {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 12px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #303030;
+  height: 40px;
+  border-radius: 40px;
+  overflow: hidden;
+}
+.search-container input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  border-right: 1px solid #303030;
+  height: 100%;
+  padding: 8px 12px;
+  font-size: 1.6rem;
+}
+.search-container figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222222;
+  height: 100%;
+  width: 64px;
+  cursor: pointer;
+}
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+.icon-search {
+  filter: invert(76%) sepia(0%) saturate(0%) hue-rotate(183deg) brightness(88%)
+    contrast(81%);
+}
+.mic-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: #181818;
+  cursor: pointer;
+}
+.icon-mic {
+  display: block;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(214deg)
+    brightness(107%) contrast(101%);
+}
+.mic-container:hover {
+  background-color: #222222;
+}
+
+.nav__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon--white {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(214deg)
+    brightness(107%) contrast(101%);
+}
+.right__login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 90px;
+  background-color: #3ca0f5;
+  color: white;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  font-family: inherit;
+}
