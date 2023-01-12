@@ -1,0 +1,17 @@
+.IconAsideBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 204px;
+  height: 40px;
+  gap: 20px;
+}
+.IconAsideBar img {
+  height: 24px;
+  height: 24px;
+}
+.IconAsideBar span {
+  width: 100%;
+  font-size: 1.4rem;
+  color: #f1f1f1;
+}

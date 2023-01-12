@@ -1,0 +1,37 @@
+.AsideBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 240px;
+  background-color: #0f0f0f;
+  max-height: 94vh;
+  overflow-y: scroll;
+  cursor: pointer;
+  transform: translateX(0);
+  transition: transform 0.2s ease-in;
+}
+.AsideBar.close {
+  transform: translateX(-100%);
+}
+.AsideBar::-webkit-scrollbar {
+  width: 8px;
+}
+.AsideBar::-webkit-scrollbar-thumb {
+  background-color: #717171;
+  border-radius: 4px;
+}
+
+.AsideBar ul {
+  border-bottom: 1px solid #f1f1f1;
+  padding-block: 12px;
+}
+.AsideBar__footer {
+  border-bottom: none !important;
+  width: 204px;
+}
+.AsideBar__footer p {
+  color: #f1f1f1;
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+  text-align: center;
+}

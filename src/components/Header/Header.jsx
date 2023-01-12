@@ -7,13 +7,18 @@ import micIcon from "../../assets/icons/mic.svg";
 import addIcon from "../../assets/icons/add.svg";
 import notificationsIcon from "../../assets/icons/notifications.svg";
 
-const Header = () => {
+const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
   return (
     <header>
       <nav>
         <div className="nav__left">
           <figure className="left__burger">
-            <img src={menuIcon} alt="" className="icon icon--white" />
+            <img
+              src={menuIcon}
+              alt=""
+              className="icon icon--white"
+              onClick={() => setToggleAsideBar(!toggleAsideBar)}
+            />
           </figure>
           <div className="left__logo">
             <img src={logoIcon} alt="" />
