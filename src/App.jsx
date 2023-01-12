@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { AsideBar } from "./components/AsideBar/AsideBar";
+import { CategoriesBar } from "./components/CategoriesBar/CategoriesBar";
 import { Header } from "./components/Header/Header";
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
         toggleAsideBar={toggleAsideBar}
       />
       <AsideBar toggleAsideBar={toggleAsideBar} />
+      <div className="home">
+        <CategoriesBar />
+      </div>
     </>
   );
 }
