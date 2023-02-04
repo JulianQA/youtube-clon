@@ -1,0 +1,9 @@
+.HomeScreen__videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+  grid-template-rows: minmax(260px, 270px);
+  place-content: center;
+  width: 100%;
+  margin-top: 24px;
+  gap: 16px;
+}

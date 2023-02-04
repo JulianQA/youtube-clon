@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { AsideBar } from "./components/AsideBar/AsideBar";
-import { CategoriesBar } from "./components/CategoriesBar/CategoriesBar";
 import { Header } from "./components/Header/Header";
+import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
 
 function App() {
   const [toggleAsideBar, setToggleAsideBar] = useState(false);
@@ -13,9 +13,7 @@ function App() {
         toggleAsideBar={toggleAsideBar}
       />
       <AsideBar toggleAsideBar={toggleAsideBar} />
-      <div className="home">
-        <CategoriesBar />
-      </div>
+      <HomeScreen />
     </>
   );
 }
