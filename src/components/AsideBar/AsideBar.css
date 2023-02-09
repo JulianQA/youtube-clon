@@ -23,8 +23,11 @@
 }
 
 .AsideBar ul {
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid #3f3f3f;
   padding-block: 12px;
+}
+.AsideBar .icon--red {
+  color: #f00;
 }
 .AsideBar__footer {
   border-bottom: none !important;

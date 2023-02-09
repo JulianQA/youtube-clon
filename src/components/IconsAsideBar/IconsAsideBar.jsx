@@ -4,7 +4,7 @@ import "./IconsAsideBar.css";
 const IconsAsideBar = ({ icon, name }) => {
   return (
     <div className="IconAsideBar">
-      <img src={icon} alt={name} />
+      <div className="IconAsideBar__icon">{icon}</div>
       <span>{name}</span>
     </div>
   );

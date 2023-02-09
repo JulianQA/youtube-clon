@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { AsideBar } from "./components/AsideBar/AsideBar";
 import { Header } from "./components/Header/Header";
 import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
+import { LoginScreen } from "./screens/LoginScreen/LoginScreen";
 
-function App() {
+const Layout = ({ children }) => {
   const [toggleAsideBar, setToggleAsideBar] = useState(false);
   return (
     <>
@@ -13,8 +15,42 @@ function App() {
         toggleAsideBar={toggleAsideBar}
       />
       <AsideBar toggleAsideBar={toggleAsideBar} />
-      <HomeScreen />
+      {children}
     </>
+  );
+};
+
+function App() {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <HomeScreen />
+            </Layout>
+          }
+        />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route
+          path="/search"
+          element={
+            <Layout>
+              <h1>Resualtados de búsqueda</h1>
+            </Layout>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <h1>404 Not Found</h1>
+            </Layout>
+          }
+        />
+      </Routes>
+    </HashRouter>
   );
 }
 

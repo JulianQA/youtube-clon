@@ -6,9 +6,9 @@
   height: 40px;
   gap: 20px;
 }
-.IconAsideBar img {
-  height: 24px;
-  height: 24px;
+.IconAsideBar__icon {
+  font-size: 2rem;
+  color: white;
 }
 .IconAsideBar span {
   width: 100%;

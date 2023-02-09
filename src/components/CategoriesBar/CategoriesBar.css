@@ -3,6 +3,8 @@
   gap: 12px;
   overflow-x: scroll;
   padding-bottom: 12px;
+  align-items: center;
+  justify-content: center;
 }
 .CategoriesBar::-webkit-scrollbar {
   height: 4px;
