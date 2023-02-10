@@ -103,6 +103,7 @@ nav {
   border-radius: 4px;
   font-size: 1.4rem;
   font-family: inherit;
+  cursor: pointer;
 }
 
 @media (max-width: 428px) {

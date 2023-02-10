@@ -4,8 +4,28 @@ import logoIcon from "../../assets/imgs/youtube-logo.svg";
 import { AiOutlineBell, AiOutlineSearch } from "react-icons/ai";
 import { BsMic, BsPlus } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { signInWithGoogle } from "../../Firebase/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRequest, loginSuccess } from "../../redux/slices/authSlice";
 
 const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
+  const dispatch = useDispatch();
+  const handleLogin = async () => {
+    dispatch(loginRequest());
+    const res = await signInWithGoogle();
+
+    dispatch(
+      loginSuccess({
+        accessToken: res.accessToken,
+        user: {
+          name: res.providerData[0].displayName,
+          photo: res.providerData[0].photoURL,
+        },
+      })
+    );
+  };
+  const { auth } = useSelector((state) => state);
+  console.log(auth);
   return (
     <header>
       <nav>
@@ -34,7 +54,7 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
         <div className="nav__right">
           <BsPlus className="icon add-icon icon--white" />
           <AiOutlineBell className="icon nots-icon icon--white" />
-          <div className="right__login">
+          <div className="right__login" onClick={handleLogin}>
             <span>Acceder</span>
           </div>
         </div>
