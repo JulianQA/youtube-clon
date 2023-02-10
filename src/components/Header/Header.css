@@ -105,7 +105,13 @@ nav {
   font-family: inherit;
   cursor: pointer;
 }
-
+.login__profile-photo {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 @media (max-width: 428px) {
   .search-container input,
   .mic-container,

@@ -24,8 +24,8 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
       })
     );
   };
-  const { auth } = useSelector((state) => state);
-  console.log(auth);
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
   return (
     <header>
       <nav>
@@ -54,9 +54,17 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
         <div className="nav__right">
           <BsPlus className="icon add-icon icon--white" />
           <AiOutlineBell className="icon nots-icon icon--white" />
-          <div className="right__login" onClick={handleLogin}>
-            <span>Acceder</span>
-          </div>
+          {!user ? (
+            <div className="right__login" onClick={handleLogin}>
+              <span>Acceder</span>
+            </div>
+          ) : (
+            <img
+              src={user?.photo}
+              className="login__profile-photo"
+              title={user?.name}
+            />
+          )}
         </div>
       </nav>
     </header>
