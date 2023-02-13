@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  accessToken: null,
-  user: null,
+  accessToken: localStorage.getItem("yt-accessToken")
+    ? localStorage.getItem("yt-accessToken")
+    : null,
+  user: localStorage.getItem("yt-userData")
+    ? JSON.parse(localStorage.getItem("yt-userData"))
+    : null,
   loading: false,
 };
 export const authSlice = createSlice({

@@ -12,20 +12,24 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
   const dispatch = useDispatch();
   const handleLogin = async () => {
     dispatch(loginRequest());
-    const res = await signInWithGoogle();
+    const response = await signInWithGoogle();
+    const accessToken = response.accessToken;
+    const user = {
+      name: response.providerData[0].displayName,
+      photo: response.providerData[0].photoURL,
+    };
 
     dispatch(
       loginSuccess({
-        accessToken: res.accessToken,
-        user: {
-          name: res.providerData[0].displayName,
-          photo: res.providerData[0].photoURL,
-        },
+        accessToken: accessToken,
+        user: user,
       })
     );
+    localStorage.setItem("yt-accessToken", accessToken);
+    localStorage.setItem("yt-userData", JSON.stringify(user));
   };
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
+  console.log(typeof user.photo);
   return (
     <header>
       <nav>
