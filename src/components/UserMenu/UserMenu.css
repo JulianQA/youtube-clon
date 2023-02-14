@@ -1,0 +1,39 @@
+.UserMenu {
+  position: absolute;
+  top: 52px;
+  right: 16px;
+  background-color: #282828;
+  width: 300px;
+  font-size: 1.4rem;
+  color: #f1f1f1;
+  border-radius: 12px;
+}
+.UserMenu__header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+  border-bottom: 1px solid #535353;
+}
+.UserMenu__header img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.UserMenu__header span {
+  font-size: 1.6rem;
+}
+.UserMenu__account-settings {
+  padding: 8px;
+  cursor: pointer;
+}
+.UserMenu__account-settings div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.UserMenu__account-settings .icon {
+  width: 20px;
+  height: 20px;
+}
