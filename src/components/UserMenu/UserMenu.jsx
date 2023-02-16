@@ -10,7 +10,7 @@ const UserMenu = ({ setToggleUserMenu }) => {
   const handleSignOut = () => {
     signOutFromGoogle();
     dispatch(signOut());
-    localStorage.clear();
+    sessionStorage.clear();
     setToggleUserMenu(false);
   };
   const user = useSelector((state) => state.auth.user);

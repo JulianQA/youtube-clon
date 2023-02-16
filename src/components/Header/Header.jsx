@@ -27,8 +27,8 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
         user: user,
       })
     );
-    localStorage.setItem("yt-accessToken", accessToken);
-    localStorage.setItem("yt-userData", JSON.stringify(user));
+    sessionStorage.setItem("yt-accessToken", accessToken);
+    sessionStorage.setItem("yt-userData", JSON.stringify(user));
   };
   const user = useSelector((state) => state.auth.user);
   return (
