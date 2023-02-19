@@ -1,4 +1,5 @@
 .VideoPreview {
+  position: relative;
   width: 100%;
   color: white;
   cursor: pointer;
@@ -7,6 +8,15 @@
   display: block;
   width: 100%;
   border-radius: 12px;
+}
+.VideoPreview__duration {
+  position: absolute;
+  right: 8px;
+  top: 155px;
+  font-size: 1.2rem;
+  background-color: black;
+  padding: 4px;
+  border-radius: 6px;
 }
 .VideoPreview__info {
   display: grid;
@@ -28,6 +38,7 @@
   text-align: left;
   font-size: 1.4rem;
   align-self: center;
+  text-overflow: ellipsis;
 }
 .info__data {
   grid-column: 2 / 5;

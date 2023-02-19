@@ -20,6 +20,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
+provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
 
 export const signInWithGoogle = async () => {
   try {

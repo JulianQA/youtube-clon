@@ -1,30 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import moment from "moment/moment";
+import numeral from "numeral";
 import "./VideoPreview.css";
-
-const VideoPreview = () => {
+import { API_URL } from "../../api/api";
+const VideoPreview = ({ video }) => {
+  const {
+    contentDetails: { duration },
+    snippet: {
+      channelTitle,
+      publishedAt,
+      channelId,
+      thumbnails: { medium },
+      title,
+    },
+    statistics: { viewCount },
+  } = video;
+  const [channelIcon, setChannelIcon] = useState(null);
+  useEffect(() => {
+    const getChannelIcon = async () => {
+      const response = await fetch(
+        `${API_URL}channels?part=snippet&id=${channelId}&key=${process.env.REACT_APP_API_KEY}`
+      );
+      const { items } = await response.json();
+      setChannelIcon(items[0].snippet.thumbnails.default.url);
+    };
+    getChannelIcon();
+  }, []);
+  const parseDuration = () =>
+    moment.utc(moment.duration(duration).asSeconds() * 1000).format("mm:ss");
   return (
     <div className="VideoPreview">
       <figure className="VideoPreview__image">
-        <img
-          src="https://i.ytimg.com/vi/MwpMEbgC7DA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDE_qdniId9OIfa6OrZI9ls0Nfg0Q"
-          alt=""
-        />
+        <img src={medium.url} alt={title} title={title} />
       </figure>
+      <span className="VideoPreview__duration">{parseDuration()}</span>
       <div className="VideoPreview__info">
         <figure className="info__channel-logo">
-          <img
-            src="https://yt3.ggpht.com/KC1QFXIOH5NZyeF7HoBXZf2OXp-p-TwhRqvRWQOXBDxQJbM7k06Ru7lDwxbPueUk6An3b2PW=s88-c-k-c0x00ffffff-no-rj"
-            alt="channel-logo"
-          />
+          <img src={channelIcon} alt="" title={channelTitle} />
         </figure>
         <div className="info__video-title">
-          <span>Another Love</span>
+          <span>{title}</span>
         </div>
         <div className="info__data">
-          <span className="data__name-channel">Tom Odell</span>
+          <span className="data__name-channel">{channelTitle}</span>
           <p>
-            <span className="data__views">1M vistas</span>
-            <span className="data__time-ago">hace 2 semanas</span>
+            <span className="data__views">
+              {`${numeral(viewCount).format("0.a")}`}
+            </span>
+            <span className="data__time-ago">
+              {moment(publishedAt).fromNow()}
+            </span>
           </p>
         </div>
       </div>

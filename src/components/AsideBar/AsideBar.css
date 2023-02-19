@@ -10,6 +10,7 @@
   cursor: pointer;
   transform: translateX(0);
   transition: transform 0.2s ease-in;
+  z-index: 2;
 }
 .AsideBar.close {
   transform: translateX(-100%);

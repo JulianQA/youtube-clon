@@ -4,7 +4,6 @@ import "./App.css";
 import { AsideBar } from "./components/AsideBar/AsideBar";
 import { Header } from "./components/Header/Header";
 import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
-import { LoginScreen } from "./screens/LoginScreen/LoginScreen";
 
 const Layout = ({ children }) => {
   const [toggleAsideBar, setToggleAsideBar] = useState(false);
@@ -32,7 +31,6 @@ function App() {
             </Layout>
           }
         />
-        <Route path="/login" element={<LoginScreen />} />
         <Route
           path="/search"
           element={
