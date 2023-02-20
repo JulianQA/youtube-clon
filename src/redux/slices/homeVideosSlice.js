@@ -14,7 +14,8 @@ export const homeVideosSlice = createSlice({
       state.loading = true;
     },
     homeVideosSuccess(state, action) {
-      state.videos = action.payload.videos;
+      state.videos = [...state.videos, ...action.payload.videos];
+      // state.videos = action.payload.videos;
       state.nextPageToken = action.payload.nextPageToken;
       state.loading = false;
     },

@@ -133,3 +133,9 @@ nav {
     padding-inline: 8px;
   }
 }
+
+@media (min-width: 1000px) {
+  .search-container input {
+    width: 450px;
+  }
+}
