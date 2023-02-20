@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMostPopularVideos } from "../../api/api";
-import { CategoriesBar } from "../../components/CategoriesBar/CategoriesBar";
 import { VideoPreview } from "../../components/VideoPreview/VideoPreview";
 import {
   homeVideosFail,
@@ -33,7 +32,6 @@ const HomeScreen = () => {
   const { videos } = useSelector((state) => state.homeVideos);
   return (
     <div className="HomeScreen">
-      <CategoriesBar />
       <div className="HomeScreen__videos">
         {videos.map((video) => (
           <VideoPreview video={video} key={video.id} />
