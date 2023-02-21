@@ -15,12 +15,12 @@ export const homeVideosSlice = createSlice({
     },
     homeVideosSuccess(state, action) {
       state.videos = [...state.videos, ...action.payload.videos];
-      // state.videos = action.payload.videos;
       state.nextPageToken = action.payload.nextPageToken;
       state.loading = false;
     },
     homeVideosFail(state, action) {
       state.error = action.payload;
+      state.loading = false;
     },
   },
 });

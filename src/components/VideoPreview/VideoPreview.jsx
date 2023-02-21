@@ -3,6 +3,7 @@ import moment from "moment/moment";
 import numeral from "numeral";
 import "./VideoPreview.css";
 import { API_URL } from "../../api/api";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const VideoPreview = ({ video }) => {
   const {
     contentDetails: { duration },
@@ -28,15 +29,20 @@ const VideoPreview = ({ video }) => {
   }, []);
   const parseDuration = () =>
     moment.utc(moment.duration(duration).asSeconds() * 1000).format("mm:ss");
+
   return (
     <div className="VideoPreview">
       <figure className="VideoPreview__image">
-        <img src={medium.url} alt={title} title={title} />
+        <LazyLoadImage src={medium.url} alt={title} title={title} />
       </figure>
       <span className="VideoPreview__duration">{parseDuration()}</span>
       <div className="VideoPreview__info">
         <figure className="info__channel-logo">
-          <img src={channelIcon} alt="" title={channelTitle} />
+          <LazyLoadImage
+            src={channelIcon}
+            alt={channelTitle}
+            title={channelTitle}
+          />
         </figure>
         <div className="info__video-title">
           <span>{title}</span>
