@@ -34,6 +34,12 @@
   border-radius: 50%;
 }
 .info__video-title {
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  white-space: normal;
   grid-column: 2 / 5;
   text-align: left;
   font-size: 1.4rem;

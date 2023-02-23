@@ -1,0 +1,45 @@
+.WatchScreen {
+  display: flex;
+  justify-content: center;
+  padding-inline: 20px;
+  padding-top: 24px;
+  gap: 24px;
+}
+.WatchScreen__left {
+  width: 75%;
+}
+
+.left__video {
+  width: 100%;
+  height: 650px;
+  /* border: none; */
+}
+.WatchScreen__right {
+  width: 25%;
+}
+
+@media (max-width: 1024px) {
+  .left__video {
+    height: 370px;
+  }
+}
+
+@media (max-width: 768px) {
+  .WatchScreen {
+    flex-direction: column;
+  }
+  .WatchScreen > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  .WatchScreen {
+    padding: 12px;
+  }
+}
+@media (max-width: 320px) {
+  .left__video {
+    height: 270px;
+  }
+}

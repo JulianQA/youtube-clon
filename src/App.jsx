@@ -4,6 +4,7 @@ import "./App.css";
 import { AsideBar } from "./components/AsideBar/AsideBar";
 import { Header } from "./components/Header/Header";
 import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
+import { WatchScreen } from "./screens/WatchScreen/WatchScreen";
 
 const Layout = ({ children }) => {
   const [toggleAsideBar, setToggleAsideBar] = useState(false);
@@ -36,6 +37,14 @@ function App() {
           element={
             <Layout>
               <h1>Resualtados de búsqueda</h1>
+            </Layout>
+          }
+        />
+        <Route
+          path="/watch/:id"
+          element={
+            <Layout>
+              <WatchScreen />
             </Layout>
           }
         />
