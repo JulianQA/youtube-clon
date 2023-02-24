@@ -28,6 +28,11 @@
   margin-bottom: 8px;
 }
 
+.comment__text a {
+  color: #3ea6ff;
+  text-decoration: none;
+}
+
 .comment__likes {
   display: flex;
   color: #f1f1f1;

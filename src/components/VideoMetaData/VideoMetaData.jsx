@@ -26,10 +26,8 @@ const VideoMetaData = ({ video }) => {
   }, []);
   const getChannel = async () => {
     const res = await getChannelDetails(video?.snippet?.channelId);
-    console.log(res);
     setChannelDetails(res);
   };
-
   return (
     <div className="VideoMetaData">
       <div className="VideoMetaData__top">

@@ -35,3 +35,15 @@ export const getChannelDetails = async (channelId) => {
     console.log(error);
   }
 };
+
+export const getCommentsByVideo = async (videoId) => {
+  try {
+    const response = await fetch(
+      `${API_URL}commentThreads?part=snippet&videoId=${videoId}&key=${key}`
+    );
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

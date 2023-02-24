@@ -101,6 +101,10 @@
 .description__time {
   margin-bottom: 8px;
 }
+.description__data {
+  max-width: 100%;
+  white-space: pre-line;
+}
 .description__ShowMoreText {
   display: block;
   text-decoration: none;

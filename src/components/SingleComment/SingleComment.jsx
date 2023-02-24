@@ -1,28 +1,31 @@
+import moment from "moment";
 import React from "react";
 import { BiLike, BiDislike } from "react-icons/bi";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./SingleComment.css";
 
-const SingleComment = () => {
+const SingleComment = ({ comment }) => {
   return (
     <div className="SingleComment">
-      <img
-        src="https://yt3.ggpht.com/ytc/AL5GRJVTUFvK5cXVwvZcR27YDzHd-655HRXTSmE7n07CTg=s48-c-k-c0x00ffffff-no-rj"
-        alt=""
+      <LazyLoadImage
+        src={comment?.snippet.authorProfileImageUrl}
+        alt={comment?.snippet.authorDisplayName}
       />
       <div className="SingleComment__comment">
         <div className="comment__data">
           <p className="comment__user-name">
-            Nombre <span>hace 1 año</span>
+            {comment?.snippet.authorDisplayName}{" "}
+            <span>{moment(comment?.snippet.publishedAt).fromNow()}</span>
           </p>
-          <p className="comment__text">
-            great tutorial. redux's summary is like ultimate level.
-            Authetication part is amazing. Thank You.
-          </p>
+          <p
+            className="comment__text"
+            dangerouslySetInnerHTML={{ __html: comment?.snippet.textDisplay }}
+          ></p>
         </div>
         <div className="comment__likes">
           <div>
             <BiLike />
-            <span>23</span>
+            <span>{comment?.snippet.likeCount}</span>
             <BiDislike />
           </div>
           <span>Responder</span>

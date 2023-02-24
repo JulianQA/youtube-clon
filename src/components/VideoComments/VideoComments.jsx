@@ -4,10 +4,13 @@ import { BiHappyBeaming } from "react-icons/bi";
 import { SingleComment } from "../SingleComment/SingleComment";
 import "./VideoComments.css";
 
-const VideoComments = () => {
+const VideoComments = ({ comments }) => {
   const handleAddComment = (event) => {
     event.preventDefault();
   };
+  const newComments = comments?.map(
+    (comment) => comment?.snippet.topLevelComment
+  );
   return (
     <div className="VideoComments">
       <div className="VideoComments__top">
@@ -38,8 +41,8 @@ const VideoComments = () => {
         </form>
       </div>
       <div className="VideoComments__all-comments">
-        {[...Array(10)].map(() => (
-          <SingleComment />
+        {newComments?.map((comment) => (
+          <SingleComment comment={comment} key={comment.id} />
         ))}
       </div>
     </div>

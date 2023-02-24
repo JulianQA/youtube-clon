@@ -5,12 +5,12 @@
   align-items: center;
   width: 240px;
   background-color: #0f0f0f;
-  max-height: 94vh;
+  max-height: 95vh;
   overflow-y: scroll;
   cursor: pointer;
   transform: translateX(0);
   transition: transform 0.2s ease-in;
-  z-index: 2;
+  z-index: 3;
 }
 .AsideBar.close {
   transform: translateX(-100%);
