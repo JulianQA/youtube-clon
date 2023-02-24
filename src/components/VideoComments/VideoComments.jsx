@@ -3,8 +3,9 @@ import { MdOutlineSort } from "react-icons/md";
 import { BiHappyBeaming } from "react-icons/bi";
 import { SingleComment } from "../SingleComment/SingleComment";
 import "./VideoComments.css";
+import numeral from "numeral";
 
-const VideoComments = ({ comments }) => {
+const VideoComments = ({ comments, video }) => {
   const handleAddComment = (event) => {
     event.preventDefault();
   };
@@ -15,7 +16,10 @@ const VideoComments = ({ comments }) => {
     <div className="VideoComments">
       <div className="VideoComments__top">
         <div className="top__total-comments">
-          333 comments
+          {video?.statistics?.commentCount.length > 6
+            ? numeral(video?.statistics.commentCount).format("0.0a")
+            : numeral(video?.statistics.commentCount).format("0,0")}
+          {" comments"}
           <div>
             <MdOutlineSort />
             <span>Sort by</span>

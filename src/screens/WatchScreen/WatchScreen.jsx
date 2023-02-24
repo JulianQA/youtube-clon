@@ -46,7 +46,9 @@ const WatchScreen = () => {
 
         {video && <VideoMetaData video={video} />}
 
-        {comments && <VideoComments comments={comments} />}
+        {comments && video && (
+          <VideoComments comments={comments} video={video} />
+        )}
       </div>
       <div className="WatchScreen__right">
         {[...Array(10)].map(() => (
