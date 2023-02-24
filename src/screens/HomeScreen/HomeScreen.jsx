@@ -14,7 +14,9 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchHomeVideos();
+    if (videos.length === 0) {
+      fetchHomeVideos();
+    }
   }, []);
 
   const fetchHomeVideos = async () => {

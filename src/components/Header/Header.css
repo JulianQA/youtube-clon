@@ -17,6 +17,7 @@ nav {
   height: 56px;
   width: 120px;
   color: white;
+  cursor: pointer;
 }
 
 .nav__center {

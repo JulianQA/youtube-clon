@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./VideoMetaData.css";
 import {
   BiLike,
@@ -9,24 +9,50 @@ import {
 import { RiDownloadLine } from "react-icons/ri";
 import { FaDonate } from "react-icons/fa";
 import ShowMoreText from "react-show-more-text";
+import numeral from "numeral";
+import moment from "moment";
+import { getChannelDetails } from "../../api/api";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-const VideoMetaData = () => {
+const VideoMetaData = ({ video }) => {
+  const [channelDetails, setChannelDetails] = useState(null);
+  const numeralNumber = (n) => {
+    const res =
+      n.length > 6 ? numeral(n).format("0.0a") : numeral(n).format("0,0");
+    return res;
+  };
+  useEffect(() => {
+    getChannel();
+  }, []);
+  const getChannel = async () => {
+    const res = await getChannelDetails(video?.snippet?.channelId);
+    console.log(res);
+    setChannelDetails(res);
+  };
+
   return (
     <div className="VideoMetaData">
       <div className="VideoMetaData__top">
-        <p>Title</p>
+        <p>{video?.snippet?.title}</p>
         <div className="top__channel-details">
           <div className="channel-details__channel-info">
             <div className="channel-info__channel-data">
-              <img
-                src="https://yt3.ggpht.com/ytc/AL5GRJVTUFvK5cXVwvZcR27YDzHd-655HRXTSmE7n07CTg=s48-c-k-c0x00ffffff-no-rj"
-                alt=""
-                className="channel-data__logo"
-              />
+              {channelDetails && (
+                <LazyLoadImage
+                  src={channelDetails?.snippet?.thumbnails?.default.url}
+                  alt={video?.snippet?.channelTitle}
+                  className="channel-data__logo"
+                />
+              )}
               <div>
-                <span className="channel-data__name">channel name</span>
+                <span className="channel-data__name">
+                  {video?.snippet?.channelTitle}
+                </span>
                 <span className="channel_data__subscribers">
-                  378,000 suscriptores
+                  {channelDetails &&
+                    `${numeralNumber(
+                      channelDetails?.statistics?.subscriberCount
+                    )} subscribers`}
                 </span>
               </div>
             </div>
@@ -39,7 +65,7 @@ const VideoMetaData = () => {
             <div className="stuff__likes">
               <div className="likes__like">
                 <BiLike className="stuff__icon" />
-                <span>2,514</span>
+                <span>{numeralNumber(video?.statistics?.likeCount)}</span>
               </div>
               <BiDislike className="stuff__icon" />
             </div>
@@ -62,7 +88,11 @@ const VideoMetaData = () => {
         </div>
       </div>
       <div className="VideoMetaData__description">
-        <p className="description__time">50,000 vistas haves 2 años</p>
+        <p className="description__time">
+          {`${numeralNumber(video?.statistics?.viewCount)} views ${moment(
+            video?.snippet?.publishedAt
+          ).fromNow()}`}
+        </p>
         <div className="description__data">
           <ShowMoreText
             lines={2}
@@ -71,24 +101,7 @@ const VideoMetaData = () => {
             anchorClass="description__ShowMoreText"
             expanded={false}
           >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
-            consectetur magnam esse autem sit beatae ab expedita ducimus debitis
-            cum, accusantium vero minus vitae laudantium libero non aspernatur
-            veritatis velit. Maxime temporibus laborum quis corrupti non
-            repellendus? Nisi natus temporibus ut corporis, tenetur pariatur,
-            totam asperiores harum, quo voluptatibus assumenda exercitationem
-            possimus neque tempore suscipit? Delectus culpa at temporibus vero.
-            Ab sapiente nihil libero, laborum facilis officiis tempore dicta cum
-            animi saepe officia similique voluptatibus hic harum ratione?
-            Sapiente, laborum sunt. Laudantium aliquam molestiae iure. Dolorem
-            amet expedita quisquam. Recusandae. Aperiam eos, velit quod quia
-            numquam at magnam illo consequuntur nulla tempore laudantium
-            repellat? Assumenda voluptatem, ratione alias quia error unde,
-            quibusdam, esse minus voluptatum voluptates a numquam debitis ex.
-            Laborum odit sit enim ab placeat ipsa harum iure maxime, eum rem qui
-            deserunt voluptatibus modi perferendis, dignissimos repudiandae
-            deleniti magnam voluptatem veritatis aut quod tempora cumque fugit
-            aspernatur? Libero.
+            {video?.snippet?.description}
           </ShowMoreText>
         </div>
       </div>

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import moment from "moment/moment";
 import numeral from "numeral";
 import "./VideoPreview.css";
-import { API_URL } from "../../api/api";
+import { getChannelDetails } from "../../api/api";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
 const VideoPreview = ({ video }) => {
   const {
     contentDetails: { duration },
@@ -15,23 +16,24 @@ const VideoPreview = ({ video }) => {
       title,
     },
     statistics: { viewCount },
+    id,
   } = video;
   const [channelIcon, setChannelIcon] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     const getChannelIcon = async () => {
-      const response = await fetch(
-        `${API_URL}channels?part=snippet&id=${channelId}&key=${process.env.REACT_APP_API_KEY}`
-      );
-      const { items } = await response.json();
-      setChannelIcon(items[0].snippet.thumbnails.default.url);
+      const res = await getChannelDetails(channelId);
+      setChannelIcon(res.snippet.thumbnails.default.url);
     };
     getChannelIcon();
   }, []);
   const parseDuration = () =>
     moment.utc(moment.duration(duration).asSeconds() * 1000).format("mm:ss");
-
+  const handleVideoClick = () => {
+    navigate(`/watch/${id}`);
+  };
   return (
-    <div className="VideoPreview">
+    <div className="VideoPreview" onClick={handleVideoClick}>
       <figure className="VideoPreview__image">
         <LazyLoadImage src={medium.url} alt={title} title={title} />
       </figure>

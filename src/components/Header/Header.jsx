@@ -8,10 +8,12 @@ import { signInWithGoogle } from "../../Firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, loginSuccess } from "../../redux/slices/authSlice";
 import { UserMenu } from "../UserMenu/UserMenu";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
   const [toggleUserMenu, setToggleUserMenu] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogin = async () => {
     dispatch(loginRequest());
     const response = await signInWithGoogle();
@@ -31,6 +33,9 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
     sessionStorage.setItem("yt-userData", JSON.stringify(user));
   };
   const user = useSelector((state) => state.auth.user);
+  const handleGoToHome = () => {
+    navigate("/");
+  };
   return (
     <header>
       <nav>
@@ -41,7 +46,7 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
               onClick={() => setToggleAsideBar(!toggleAsideBar)}
             />
           </figure>
-          <div className="left__logo">
+          <div className="left__logo" onClick={handleGoToHome}>
             <img src={logoIcon} alt="" />
           </div>
         </div>
