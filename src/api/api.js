@@ -15,7 +15,7 @@ export async function getMostPopularVideos(pageToken = "") {
 export const getASingleVideoDetails = async (id) => {
   try {
     const response = await fetch(
-      `${API_URL}videos?part=snippet,statistics&id=${id}&key=${key}`
+      `${API_URL}videos?part=snippet,statistics,contentDetails&id=${id}&key=${key}`
     );
     const data = await response.json();
     return data;
@@ -40,6 +40,18 @@ export const getCommentsByVideo = async (videoId) => {
   try {
     const response = await fetch(
       `${API_URL}commentThreads?part=snippet&videoId=${videoId}&key=${key}`
+    );
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getRelatedVideos = async (videoId) => {
+  try {
+    const response = await fetch(
+      `${API_URL}search?part=snippet&relatedToVideoId=${videoId}&type=video&maxResults=20&key=${key}`
     );
     const data = response.json();
     return data;

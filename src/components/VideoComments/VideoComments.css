@@ -1,5 +1,7 @@
 .VideoComments {
+  max-width: 100%;
   margin-top: 24px;
+  overflow: hidden;
 }
 .top__total-comments {
   display: flex;

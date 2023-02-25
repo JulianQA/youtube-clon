@@ -23,7 +23,7 @@ const VideoMetaData = ({ video }) => {
   };
   useEffect(() => {
     getChannel();
-  }, []);
+  }, [video]);
   const getChannel = async () => {
     const res = await getChannelDetails(video?.snippet?.channelId);
     setChannelDetails(res);

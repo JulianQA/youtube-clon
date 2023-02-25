@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getASingleVideoDetails, getCommentsByVideo } from "../../api/api";
+import {
+  getASingleVideoDetails,
+  getCommentsByVideo,
+  getRelatedVideos,
+} from "../../api/api";
 import { RelatedVideoPreview } from "../../components/RelatedVideoPreview/RelatedVideoPreview";
 import { VideoComments } from "../../components/VideoComments/VideoComments";
 import { VideoMetaData } from "../../components/VideoMetaData/VideoMetaData";
@@ -11,12 +15,15 @@ const WatchScreen = () => {
   const { id } = useParams();
   const [video, setVideo] = useState();
   const [comments, setComments] = useState();
+  const [relatedVideos, setRelatedVideos] = useState();
+
   useEffect(() => {
     getVideo();
-  }, []);
+  }, [id]);
   useEffect(() => {
     getComments();
-  }, [video]);
+    getRelated();
+  }, [video, id]);
   const getVideo = async () => {
     try {
       const res = await getASingleVideoDetails(id);
@@ -34,7 +41,12 @@ const WatchScreen = () => {
       console.log(error);
     }
   };
-
+  const getRelated = async () => {
+    try {
+      const res = await getRelatedVideos(video?.id);
+      setRelatedVideos(res?.items);
+    } catch (error) {}
+  };
   return (
     <div className="WatchScreen">
       <div className="WatchScreen__left">
@@ -51,8 +63,11 @@ const WatchScreen = () => {
         )}
       </div>
       <div className="WatchScreen__right">
-        {[...Array(10)].map(() => (
-          <RelatedVideoPreview />
+        {relatedVideos?.map((relatedVideo) => (
+          <RelatedVideoPreview
+            relatedVideo={relatedVideo}
+            key={relatedVideo?.id.videoId}
+          />
         ))}
       </div>
     </div>

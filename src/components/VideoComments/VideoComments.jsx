@@ -4,6 +4,7 @@ import { BiHappyBeaming } from "react-icons/bi";
 import { SingleComment } from "../SingleComment/SingleComment";
 import "./VideoComments.css";
 import numeral from "numeral";
+import { useSelector } from "react-redux";
 
 const VideoComments = ({ comments, video }) => {
   const handleAddComment = (event) => {
@@ -12,6 +13,7 @@ const VideoComments = ({ comments, video }) => {
   const newComments = comments?.map(
     (comment) => comment?.snippet.topLevelComment
   );
+  const user = useSelector((state) => state.auth.user);
   return (
     <div className="VideoComments">
       <div className="VideoComments__top">
@@ -26,10 +28,7 @@ const VideoComments = ({ comments, video }) => {
           </div>
         </div>
         <form className="VideoComments__form" onSubmit={handleAddComment}>
-          <img
-            src="https://yt3.ggpht.com/ytc/AL5GRJVTUFvK5cXVwvZcR27YDzHd-655HRXTSmE7n07CTg=s48-c-k-c0x00ffffff-no-rj"
-            alt=""
-          />
+          <img src={user?.photo} alt="" />
           <div className="form__add-comment">
             <input type="text" placeholder="Add a comment" />
             <div className="add-comment__bottom">

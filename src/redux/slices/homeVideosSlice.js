@@ -18,10 +18,10 @@ export const homeVideosSlice = createSlice({
       state.nextPageToken = action.payload.nextPageToken;
       state.loading = false;
     },
-    homeVideosFail(state, action) {
-      state.error = action.payload;
-      state.loading = false;
-    },
+    // homeVideosFail(state, action) {
+    //   state.error = action.payload;
+    //   state.loading = false;
+    // },
   },
 });
 
