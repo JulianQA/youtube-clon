@@ -23,6 +23,7 @@ const WatchScreen = () => {
   useEffect(() => {
     getComments();
     getRelated();
+    document.title = video?.snippet?.title;
   }, [video, id]);
   const getVideo = async () => {
     try {

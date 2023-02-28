@@ -8,11 +8,11 @@ const SearchScreen = () => {
   const [videos, setVideos] = useState();
   useEffect(() => {
     getSearchedVideos();
+    document.title = query;
   }, [query]);
   const getSearchedVideos = async () => {
     const res = await getSearchVideosByKeyword(query);
     setVideos(res?.items);
-    console.log(res);
   };
   return (
     <div className="SearchScreen">

@@ -26,6 +26,7 @@ const VideoPreview = ({ video }) => {
       setChannelIcon(res.snippet.thumbnails.default.url);
     };
     getChannelIcon();
+    document.title = "YouTube";
   }, []);
   const parseDuration = () =>
     moment.utc(moment.duration(duration).asSeconds() * 1000).format("mm:ss");
