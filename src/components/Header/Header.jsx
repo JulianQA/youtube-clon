@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
   const [toggleUserMenu, setToggleUserMenu] = useState(false);
+  const [valueSearch, setValueSearch] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogin = async () => {
@@ -36,6 +37,11 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
   const handleGoToHome = () => {
     navigate("/");
   };
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    navigate(`/search/${valueSearch}`);
+  };
   return (
     <header>
       <nav>
@@ -47,16 +53,21 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
             />
           </figure>
           <div className="left__logo" onClick={handleGoToHome}>
-            <img src={logoIcon} alt="" />
+            <img src={logoIcon} alt="YouTube" />
           </div>
         </div>
         <div className="nav__center">
-          <div className="search-container">
-            <input type="text" placeholder="Buscar" />
-            <figure>
+          <form className="search-container" onSubmit={handleSumbit}>
+            <input
+              type="text"
+              placeholder="Buscar"
+              value={valueSearch || ""}
+              onChange={(e) => setValueSearch(e.target.value)}
+            />
+            <button>
               <AiOutlineSearch className="header-icon icon-search" />
-            </figure>
-          </div>
+            </button>
+          </form>
           <figure className="mic-container">
             <BsMic className="header-icon icon-mic icon--white" />
           </figure>
@@ -74,6 +85,7 @@ const Header = ({ setToggleAsideBar, toggleAsideBar }) => {
               className="login__profile-photo"
               title={user?.name}
               onClick={() => setToggleUserMenu(!toggleUserMenu)}
+              alt={user?.name}
             />
           )}
         </div>

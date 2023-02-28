@@ -6,10 +6,17 @@ import "./RelatedVideoPreview.css";
 import numeral from "numeral";
 import { useNavigate } from "react-router-dom";
 
-const RelatedVideoPreview = ({ relatedVideo }) => {
+const RelatedVideoPreview = ({ relatedVideo, searchScreen }) => {
   const {
-    id: { videoId },
-    snippet: { channelId, channelTitle, publishedAt, title, thumbnails },
+    id: { kind, videoId },
+    snippet: {
+      channelId,
+      channelTitle,
+      publishedAt,
+      title,
+      thumbnails,
+      description,
+    },
   } = relatedVideo;
   const navigate = useNavigate();
   const [videoStats, setVideoStats] = useState();
@@ -31,26 +38,63 @@ const RelatedVideoPreview = ({ relatedVideo }) => {
     moment
       .utc(moment.duration(videoStats?.duration).asSeconds() * 1000)
       .format("mm:ss");
+
+  const isVideo = kind === "youtube#video";
   const handleClick = () => {
     navigate(`/watch/${videoId}`);
   };
   return (
-    <div className="RelatedVideoPreview" onClick={handleClick}>
-      <div className="RelatedVideoPreview__video">
-        <LazyLoadImage src={thumbnails?.medium.url} alt={title} />
-        <div className="RelatedVideoPreview__duration">{parseDuration()}</div>
+    <div
+      className={
+        searchScreen
+          ? "RelatedVideoPreview searchScreen"
+          : "RelatedVideoPreview"
+      }
+      onClick={handleClick}
+    >
+      <div
+        className={
+          searchScreen
+            ? "RelatedVideoPreview__video searchScreen"
+            : "RelatedVideoPreview__video"
+        }
+      >
+        <figure className="RelatedVideoPreview__figure">
+          <LazyLoadImage
+            src={thumbnails?.medium.url}
+            alt={title}
+            className={!isVideo && "SearchScreen__channel-img"}
+          />
+        </figure>
+
+        {isVideo && (
+          <div className="RelatedVideoPreview__duration">{parseDuration()}</div>
+        )}
       </div>
       <div className="RelatedVideoPreview__data">
-        <div className="data__video-title">{title}</div>
+        <div
+          className={
+            searchScreen
+              ? "data__video-title searchScreen"
+              : "data__video-title"
+          }
+        >
+          {title}
+        </div>
         <div className="data__channel-name">{channelTitle}</div>
         <div className="data__statistics">
-          <span>
-            {videoStats?.views.length > 6
-              ? numeral(videoStats?.views).format("0.a")
-              : numeral(videoStats?.views).format("0,0")}
-          </span>
-          <span>{moment(publishedAt).fromNow()}</span>
+          {isVideo && (
+            <span>
+              {videoStats?.views?.length > 6
+                ? numeral(videoStats?.views).format("0.a")
+                : numeral(videoStats?.views).format("0,0")}
+            </span>
+          )}
+          {isVideo && <span>{moment(publishedAt).fromNow()}</span>}
         </div>
+        {isVideo && searchScreen && (
+          <p className="SearchScreen-video__description">{description}</p>
+        )}
       </div>
     </div>
   );

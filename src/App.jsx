@@ -4,6 +4,7 @@ import "./App.css";
 import { AsideBar } from "./components/AsideBar/AsideBar";
 import { Header } from "./components/Header/Header";
 import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
+import { SearchScreen } from "./screens/SearchScreen/SearchScreen";
 import { WatchScreen } from "./screens/WatchScreen/WatchScreen";
 
 const Layout = ({ children }) => {
@@ -33,10 +34,10 @@ function App() {
           }
         />
         <Route
-          path="/search"
+          path="/search/:query"
           element={
             <Layout>
-              <h1>Resualtados de búsqueda</h1>
+              <SearchScreen />
             </Layout>
           }
         />

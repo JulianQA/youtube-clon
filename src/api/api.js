@@ -59,3 +59,15 @@ export const getRelatedVideos = async (videoId) => {
     console.log(error);
   }
 };
+
+export const getSearchVideosByKeyword = async (keyword) => {
+  try {
+    const response = await fetch(
+      `${API_URL}search?part=snippet&maxResults=20&&q=${keyword}&type=video,channel&key=${key}`
+    );
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

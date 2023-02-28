@@ -49,7 +49,7 @@ nav {
   padding: 8px 12px;
   font-size: 1.6rem;
 }
-.search-container figure {
+.search-container button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,6 +57,7 @@ nav {
   height: 100%;
   width: 64px;
   cursor: pointer;
+  border: 0;
 }
 .header-icon {
   display: block;
@@ -119,17 +120,21 @@ nav {
   cursor: pointer;
 }
 @media (max-width: 428px) {
-  .search-container input,
   .mic-container,
-  .nav__right .nots-icon {
+  .nav__right .nots-icon,
+  .left__logo,
+  .add-icon,
+  .right__login {
     display: none;
   }
   .search-container {
-    border: none;
+    height: 35px;
   }
-  .search-container figure {
-    background-color: transparent;
-    width: max-content;
+  .search-container input {
+    font-size: 1.4rem;
+  }
+  nav {
+    padding-top: 13px;
   }
 }
 @media (min-width: 769px) {
