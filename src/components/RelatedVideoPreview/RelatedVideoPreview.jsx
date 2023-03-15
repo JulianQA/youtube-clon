@@ -41,7 +41,7 @@ const RelatedVideoPreview = ({ relatedVideo, searchScreen }) => {
 
   const isVideo = kind === "youtube#video";
   const handleClick = () => {
-    navigate(`/watch/${videoId}`);
+    isVideo && navigate(`/watch/${videoId}`);
   };
   return (
     <div
